@@ -16,10 +16,17 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 
+//IMPORTING ALL THE ROUTES
+const authRoute = require('./routes/auth');
+
+
 //APP ROUTES
 app.get('/api/healthcheck',(req,res)=>{
-    res.json('Beep Beep Boop Boop Server is live');
+    res.json('Beep Beep Boop Boop Server is live'); 
 })
+app.use('/api/user',authRoute);
+
+
 //IMPORTING MONGOOSE AND CONNECTING TO THE DATABASE
 const mongoose = require('mongoose');
 mongoose.connect(process.env.MONGO_URI,()=>{
